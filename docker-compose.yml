@@ -2,6 +2,8 @@ services:
   mongodb:
     image: mongodb:v1
     container_name: mongodb
+    volumes:
+    - mongodb:/data/db
   catalogue:
     image: catalogue:v1
     container_name: catalogue
@@ -10,12 +12,18 @@ services:
   redis:
     image: redis:7.0
     container_name: redis
+    volumes:
+    - mongodb:/data
   mysql:
     image: mysql:v1
     container_name: mysql
+    volumes:
+    - mongodb:/var/lib/mysql
   rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
+    volumes:
+    - mongodb:/var/lib/rabbitmq
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
@@ -62,3 +70,9 @@ networks:
     driver: bridge
     name: roboshop
     external: false # true if you have created metwork manually using docker network command 
+
+volumes:
+  redis:
+  mongodb:
+  rabbitmq:
+  mysql:
