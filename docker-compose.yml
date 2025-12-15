@@ -40,6 +40,7 @@ services:
   payment:
     image: payment:v1
     container_name: payment
+    depends_on:
     - rabbitmq
     - cart
     - user
@@ -54,7 +55,6 @@ services:
     - user
     - payment
     - shipping
-
 
 
 networks:
