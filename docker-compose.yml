@@ -6,9 +6,7 @@ services:
     volumes:
     - mongodb:/data/db
   catalogue:
-    build:
-      context: ./catalogue
-      dockerfile: dockerfile
+    build: ./catalogue
     image: arjunkeellapati/catalogue:v1
     container_name: catalogue
     depends_on:
